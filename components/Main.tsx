@@ -4,7 +4,7 @@ import { Tab, Tabs, Box, Typography } from '@mui/material'
 import React from 'react'
 import Profile from '@/components/Profile'
 
-interface TabPanelProps {
+type TabPanelProps = {
   children?: React.ReactNode;
   index: number;
   value: number;
@@ -52,7 +52,7 @@ const Main = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box sx={{textAlign: 'center'}}>
-      <h1>Yuta Matsunaga</h1>
+      <h1>ufoo68 portfolio</h1>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={tab}
             onChange={handleChange}

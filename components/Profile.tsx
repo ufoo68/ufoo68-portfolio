@@ -1,21 +1,31 @@
 import Image from 'next/image'
 import icon from '@/images/icon.png'
 
-import { Box, Popover, Typography } from '@mui/material'
+import { Box, Popover } from '@mui/material'
 import React from 'react'
+
+type ProfileContentProps = {
+  title: string;
+  text: string;
+}
 
 const Profile = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLImageElement | null>(null)
   const handleClick = (event: React.MouseEvent<HTMLImageElement>) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget)
   }
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null)
   }
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const ProfileContent = ({ title, text }: ProfileContentProps) => <div>
+    <p>{title}</p>
+    <h2>{text}</h2>
+  </div>
+
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
   return (
     <div>
       <Popover
@@ -24,7 +34,7 @@ const Profile = () => {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'top',
+          vertical: 'center',
           horizontal: 'center',
         }}
         transformOrigin={{
@@ -32,13 +42,12 @@ const Profile = () => {
           horizontal: 'center',
         }}
       >
-        <Box sx={{ width: '500px', height: '300px', p: '5px' }}>
-          <p>My name is...</p>
-          <h2>Yuta Matsunaga</h2>
-          <p>My occupation is... </p>
-          <h2>Web Application Engineer</h2>
-          <p>Mainly used language is... </p>
-          <h2>JavaScript, Typescript</h2>
+        <Box sx={{ width: '450px', height: '500px', p: '10px' }}>
+          <ProfileContent title="My name is..." text="Yuta Matsunaga" />
+          <ProfileContent title="My occupation is..." text="Web Application Engineer" />
+          <ProfileContent title="Mainly used language is...." text="JavaScript, Typescript" />
+          <ProfileContent title="I live in..." text="Shiga in Japan" />
+          <ProfileContent title="Who is this avator...?" text="Shikura" />
         </Box>
       </Popover>
       <Box sx={{ position: 'absolute', bottom: '0px', left: '0px', right: '0px' }}>
