@@ -4,6 +4,7 @@ import { Tab, Tabs, Box } from '@mui/material'
 import React from 'react'
 import Profile from '@/components/Profile'
 import Works from '@/components/Works'
+import Sotial from '@/components/Sotial'
 import { Work } from '@/libs/types'
 
 type TabPanelProps = {
@@ -67,7 +68,7 @@ const Main = ({ works }: Props) => {
           >
             <Tab label="profile" {...a11yProps(0)} />
             <Tab label="works" {...a11yProps(1)} />
-            <Tab label="brog" {...a11yProps(2)} />
+            <Tab label="Sotial" {...a11yProps(2)} />
             <Tab label="contact" {...a11yProps(2)} />
           </Tabs>
         </Box>
@@ -78,7 +79,7 @@ const Main = ({ works }: Props) => {
           <Works works={works} />
         </TabPanel>
         <TabPanel value={tab} index={2}>
-          Coming soon...
+          <Sotial />
         </TabPanel>
         <TabPanel value={tab} index={3}>
           Coming soon...
