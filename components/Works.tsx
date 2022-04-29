@@ -20,7 +20,7 @@ const Works = ({ works }: Props) => {
         <Card
           sx={{
             width: 'auto',
-            height: '500px',
+            height: '450px',
             overflow: 'auto',
           }}
           key={work.id}>
