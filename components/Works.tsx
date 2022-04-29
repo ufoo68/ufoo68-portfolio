@@ -7,7 +7,6 @@ import {
   CardMedia,
   Typography,
   Link,
-  Box,
 } from '@mui/material'
 
 type Props = {
@@ -34,7 +33,7 @@ const Works = ({ works }: Props) => {
                 alt={work.title}
                 style={{
                   width: 'auto',
-                  maxHeight: '400px',
+                  maxHeight: '300px',
                   margin: '0 auto',
                 }}
               />
