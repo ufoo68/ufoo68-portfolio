@@ -1,9 +1,8 @@
 import { Work } from "@/libs/types"
+import Carousel from 'react-material-ui-carousel'
 import {
   Card,
   CardContent,
-  CardActions,
-  Button,
   CardActionArea,
   CardMedia,
   Typography,
@@ -17,24 +16,31 @@ type Props = {
 
 const Works = ({ works }: Props) => {
   return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    }}>
+    <Carousel sx={{ padding: '5px 20px' }}>
       {works.map((work) =>
-        <Card sx={{ width: '90%', maxWidth: '600px', margin: '10px' }} key={work.id}>
+        <Card
+          sx={{
+            width: 'auto',
+            height: '500px',
+            overflow: 'auto',
+          }}
+          key={work.id}>
 
           <CardActionArea>
             <Link href={work.link}>
               <CardMedia
                 component="img"
                 image={work.image.url}
-                alt="green iguana"
+                alt={work.title}
+                style={{
+                  width: 'auto',
+                  maxHeight: '400px',
+                  margin: '0 auto',
+                }}
               />
             </Link>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant="subtitle1" component="div">
                 {work.title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -42,17 +48,9 @@ const Works = ({ works }: Props) => {
               </Typography>
             </CardContent>
           </CardActionArea>
-
-          <CardActions>
-            <Link href={work.link}>
-              <Button size="small" color="primary">
-                詳細
-              </Button>
-            </Link>
-          </CardActions>
         </Card>
       )}
-    </Box>
+    </Carousel>
   )
 }
 
