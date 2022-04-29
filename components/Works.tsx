@@ -15,7 +15,13 @@ type Props = {
 
 const Works = ({ works }: Props) => {
   return (
-    <Carousel sx={{ padding: '5px 20px' }}>
+    <Carousel
+      sx={{
+        position: 'absolute',
+        width: '100%',
+        padding: '5px 20px',
+        bottom: '5%'
+      }}>
       {works.map((work) =>
         <Card
           sx={{
