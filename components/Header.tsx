@@ -16,7 +16,6 @@ const Header = ({ tab, onChangeTab }: Props) => {
         >
           <Tab label="profile" />
           <Tab label="works" />
-          <Tab label="Sotial" />
           <Tab label="contact" />
         </Tabs>
     </AppBar>

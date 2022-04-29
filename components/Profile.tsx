@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import icon from '@/images/icon.png'
+import avator from '@/images/icon.png'
 
 import { Box, Popover } from '@mui/material'
 import React from 'react'
@@ -50,9 +50,15 @@ const Profile = () => {
           <ProfileContent title="Who is this avator...?" text="Shikura" />
         </Box>
       </Popover>
-      <Box sx={{ position: 'absolute', bottom: '0px', left: '0px', right: '0px' }}>
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '40px',
+          left: '50%',
+          transform: 'translate(-50%, 0)'
+        }}>
         {!Boolean(anchorEl) ? <h3>Please tap me!</h3> : null}
-        <Image src={icon} alt="avator" width={300} height={300} onClick={handleClick} />
+        <Image src={avator} alt="avator" width={300} height={300} onClick={handleClick} />
       </Box>
     </div>
   )

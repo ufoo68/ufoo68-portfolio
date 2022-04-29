@@ -4,9 +4,9 @@ import { Box } from '@mui/material'
 import React from 'react'
 import Profile from '@/components/Profile'
 import Works from '@/components/Works'
-import Sotial from '@/components/Sotial'
 import { Work } from '@/libs/types'
 import Header from './Header'
+import Footer from './Footer'
 
 type TabPanelProps = {
   children?: React.ReactNode;
@@ -58,12 +58,10 @@ const Main = ({ works }: Props) => {
           <Works works={works} />
         </TabPanel>
         <TabPanel value={tab} index={2}>
-          <Sotial />
-        </TabPanel>
-        <TabPanel value={tab} index={3}>
           Coming soon...
         </TabPanel>
       </Box>
+      <Footer />
     </div>
   )
 }

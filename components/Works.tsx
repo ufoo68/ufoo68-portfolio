@@ -19,14 +19,14 @@ const Works = ({ works }: Props) => {
       sx={{
         position: 'absolute',
         width: '100%',
-        padding: '5px 20px',
-        bottom: '5%'
+        padding: '0 20px',
+        bottom: '50px'
       }}>
       {works.map((work) =>
         <Card
           sx={{
             width: 'auto',
-            height: '450px',
+            height: '400px',
             overflow: 'auto',
           }}
           key={work.id}>
