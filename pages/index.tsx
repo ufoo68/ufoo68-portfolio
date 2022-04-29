@@ -1,6 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Main from '@/components/Main'
-import { client } from '@/libs/client'
+import { micrecmsClient } from '@/libs/microcms-client'
 import { Work } from '@/libs/types'
 
 const Home = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -12,7 +12,7 @@ const Home = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
 }
 
 export const getStaticProps = async (context) => {
-  const works = await client.get({ endpoint: 'works' })
+  const works = await micrecmsClient.get({ endpoint: 'works' })
 
   return {
     props: {
