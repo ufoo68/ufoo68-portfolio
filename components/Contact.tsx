@@ -1,4 +1,5 @@
-import { FormControl, Input, InputLabel, Box, TextareaAutosize, SxProps } from '@mui/material';
+import { FormControl, Input, InputLabel, Box, TextareaAutosize, Fab } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 const Contact = () => {
   return (
@@ -30,6 +31,16 @@ const Contact = () => {
           style={{ height: 200 }}
         />
       </FormControl>
+      <Fab
+        sx={{
+          position: 'absolute',
+          bottom: '50px',
+          right: '20px',
+        }}
+        color="primary"
+        aria-label="submit">
+        <SendIcon />
+      </Fab>
     </Box>
   )
 }
