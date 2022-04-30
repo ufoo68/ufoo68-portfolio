@@ -23,7 +23,6 @@ const Works = ({ works }: Props) => {
         padding: '0 20px',
         bottom: '50px'
       }}
-      autoPlay={false}
       animation="slide"
       swipe
       indicators={false}
