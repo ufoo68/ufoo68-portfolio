@@ -9,6 +9,8 @@ import {
   FormHelperText,
   Snackbar,
   Alert,
+  CircularProgress,
+  Backdrop,
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { EmailMessage } from '@/libs/types'
@@ -21,8 +23,9 @@ const Contact = () => {
     subject: '',
     message: '',
   });
-  const [showAlert, setShowAlert] = useState<boolean>(false)
-  const [sendStatus, setSendStatus] = useState<number>(0)
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [sendStatus, setSendStatus] = useState<number>(0);
+  const [showProgress, setShowProgress] = useState<boolean>(false);
   const isValidEmail = contactForm.reply_to.length === 0 || /[\w\-\._]+@[\w\-\._]+\.[A-Za-z]+/.test(contactForm.reply_to)
   const showSendButton =
     contactForm.from_name.length > 0
@@ -31,9 +34,11 @@ const Contact = () => {
     && contactForm.message.length > 0
     && isValidEmail
   const onSubmit = async () => {
+    setShowProgress(true);
     const res = await sendEmail(contactForm);
     setSendStatus(res.status);
     setShowAlert(true);
+    setShowProgress(false);
   }
   const handleCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -130,6 +135,12 @@ const Contact = () => {
           </Alert>
         }
       </Snackbar>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={showProgress}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Box>
   )
 }
