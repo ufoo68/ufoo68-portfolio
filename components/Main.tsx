@@ -7,6 +7,7 @@ import Works from '@/components/Works'
 import { Work } from '@/libs/types'
 import Header from './Header'
 import Footer from './Footer'
+import Contact from './Contact'
 
 type TabPanelProps = {
   children?: React.ReactNode;
@@ -58,7 +59,7 @@ const Main = ({ works }: Props) => {
           <Works works={works} />
         </TabPanel>
         <TabPanel value={tab} index={2}>
-          Coming soon...
+          <Contact />
         </TabPanel>
       </Box>
       <Footer />

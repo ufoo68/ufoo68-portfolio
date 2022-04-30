@@ -21,7 +21,9 @@ const Works = ({ works }: Props) => {
         width: '100%',
         padding: '0 20px',
         bottom: '50px'
-      }}>
+      }}
+      autoPlay={false}
+    >
       {works.map((work) =>
         <Card
           sx={{
