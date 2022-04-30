@@ -23,6 +23,8 @@ const Works = ({ works }: Props) => {
         bottom: '50px'
       }}
       autoPlay={false}
+      animation="slide"
+      swipe
     >
       {works.map((work) =>
         <Card
@@ -41,7 +43,7 @@ const Works = ({ works }: Props) => {
                 alt={work.title}
                 style={{
                   width: 'auto',
-                  maxHeight: '300px',
+                  maxHeight: '200px',
                   margin: '0 auto',
                 }}
               />
