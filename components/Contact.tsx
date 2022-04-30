@@ -1,31 +1,46 @@
 import { useState } from 'react';
-import { FormControl, Input, InputLabel, Box, TextareaAutosize, Fab, FormHelperText } from '@mui/material';
+import {
+  FormControl,
+  Input,
+  InputLabel,
+  Box,
+  TextareaAutosize,
+  Fab,
+  FormHelperText,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-
-type ContactForm = {
-  name: string;
-  email: string;
-  subject: string;
-  text: string;
-
-};
-
-
+import { EmailMessage } from '@/libs/types'
+import { sendEmail } from '@/libs/emailjs-client'
 
 const Contact = () => {
-  const [contactForm, setContactForm] = useState<ContactForm>({
-    name: '',
-    email: '',
+  const [contactForm, setContactForm] = useState<EmailMessage>({
+    from_name: '',
+    reply_to: '',
     subject: '',
-    text: '',
+    message: '',
   });
-  const isValidEmail = contactForm.email.length === 0 || /[\w\-\._]+@[\w\-\._]+\.[A-Za-z]+/.test(contactForm.email)
+  const [showAlert, setShowAlert] = useState<boolean>(false)
+  const [sendStatus, setSendStatus] = useState<number>(0)
+  const isValidEmail = contactForm.reply_to.length === 0 || /[\w\-\._]+@[\w\-\._]+\.[A-Za-z]+/.test(contactForm.reply_to)
   const showSendButton =
-    contactForm.name.length > 0
-    && contactForm.email.length > 0
+    contactForm.from_name.length > 0
+    && contactForm.reply_to.length > 0
     && contactForm.subject.length > 0
-    && contactForm.text.length > 0
+    && contactForm.message.length > 0
     && isValidEmail
+  const onSubmit = async () => {
+    const res = await sendEmail(contactForm);
+    setSendStatus(res.status);
+    setShowAlert(true);
+  }
+  const handleCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setShowAlert(false);
+  };
   return (
     <Box
       sx={{
@@ -44,7 +59,7 @@ const Contact = () => {
           onChange={(e) => {
             setContactForm({
               ...contactForm,
-              name: e.target.value,
+              from_name: e.target.value,
             })
           }}
         />
@@ -57,7 +72,7 @@ const Contact = () => {
           onChange={(e) => {
             setContactForm({
               ...contactForm,
-              email: e.target.value,
+              reply_to: e.target.value,
             })
           }}
         />
@@ -86,7 +101,7 @@ const Contact = () => {
           onChange={(e) => {
             setContactForm({
               ...contactForm,
-              text: e.target.value,
+              message: e.target.value,
             })
           }}
         />
@@ -99,10 +114,22 @@ const Contact = () => {
             right: '20px',
           }}
           color="primary"
-          aria-label="submit">
+          aria-label="submit"
+          onClick={onSubmit}
+        >
           <SendIcon />
         </Fab>
         : null}
+      <Snackbar open={showAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+        {sendStatus === 200 ?
+          <Alert onClose={handleCloseAlert} severity="success">
+            メールが送信されました
+          </Alert>
+          : <Alert onClose={handleCloseAlert} severity="error">
+            メールの送信に失敗しました
+          </Alert>
+        }
+      </Snackbar>
     </Box>
   )
 }

@@ -9,3 +9,10 @@ export type Work = {
   }
   link: string;
 }
+
+export type EmailMessage = {
+  from_name: string;
+  reply_to: string;
+  subject: string;
+  message: string;
+}
