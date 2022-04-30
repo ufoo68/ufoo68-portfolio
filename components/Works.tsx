@@ -19,18 +19,20 @@ const Works = ({ works }: Props) => {
       sx={{
         position: 'absolute',
         width: '100%',
+        height: '400px',
         padding: '0 20px',
         bottom: '50px'
       }}
       autoPlay={false}
       animation="slide"
       swipe
+      indicators={false}
     >
       {works.map((work) =>
         <Card
           sx={{
             width: 'auto',
-            height: '400px',
+            height: '380px',
             overflow: 'auto',
           }}
           key={work.id}>
