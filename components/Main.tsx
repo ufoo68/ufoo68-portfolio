@@ -8,6 +8,7 @@ import { Work } from '@/libs/types'
 import Header from './Header'
 import Footer from './Footer'
 import Contact from './Contact'
+import Links from './Links'
 
 type TabPanelProps = {
   children?: React.ReactNode;
@@ -45,13 +46,8 @@ const Main = ({ works }: Props) => {
   };
   return (
     <div>
-      <Head>
-        <title>ufoo68 portfolio</title>
-        <meta name="viewport" content="maximum-scale=1, initial-scale=1, width=device-width" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Header tab={tab} onChangeTab={handleChangeTab} />
-      <Box sx={{ textAlign: 'center' }}>
+      <Box sx={{ textAlign: "center" }}>
         <TabPanel value={tab} index={0}>
           <Profile />
         </TabPanel>
@@ -59,12 +55,15 @@ const Main = ({ works }: Props) => {
           <Works works={works} />
         </TabPanel>
         <TabPanel value={tab} index={2}>
+          <Links />
+        </TabPanel>
+        <TabPanel value={tab} index={3}>
           <Contact />
         </TabPanel>
       </Box>
       <Footer />
     </div>
-  )
+  );
 }
 
 export default Main

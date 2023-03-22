@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import avator from '@/images/icon.png'
 
 import { Box, Popover } from '@mui/material'
 import React from 'react'
@@ -42,12 +41,11 @@ const Profile = () => {
           horizontal: 'center',
         }}
       >
-        <Box sx={{ width: '450px', height: '500px', p: '10px' }}>
+        <Box sx={{ width: '100%', height: '100%', p: '20px' }}>
           <ProfileContent title="My name is..." text="Yuta Matsunaga" />
-          <ProfileContent title="My occupation is..." text="Web Application Engineer" />
+          <ProfileContent title="I am..." text="Web Application Engineer" />
           <ProfileContent title="Mainly used language is...." text="JavaScript, Typescript" />
           <ProfileContent title="I live in..." text="Shiga in Japan" />
-          <ProfileContent title="Who is this avator...?" text="Shikura" />
         </Box>
       </Popover>
       <Box
@@ -58,7 +56,7 @@ const Profile = () => {
           transform: 'translate(-50%, 0)'
         }}>
         {!Boolean(anchorEl) ? <h3>Please tap me!</h3> : null}
-        <Image src={avator} alt="avator" width={300} height={300} onClick={handleClick} />
+        <Image src="/icon.png" alt="avator" width={300} height={300} onClick={handleClick} />
       </Box>
     </div>
   )
