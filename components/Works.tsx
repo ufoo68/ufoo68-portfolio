@@ -1,67 +1,49 @@
-import { Work } from "@/libs/types"
-import Carousel from 'react-material-ui-carousel'
-import {
-  Card,
-  CardContent,
-  CardActionArea,
-  CardMedia,
-  Typography,
-  Link,
-} from '@mui/material'
+import { Work } from "@/libs/types";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState } from "react";
+
 
 type Props = {
   works: Work[];
-}
+};
 
 const Works = ({ works }: Props) => {
+  const [expanded, setExpanded] = useState<string | false>(false);
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
   return (
-    <Carousel
-      sx={{
-        position: 'absolute',
-        width: '100%',
-        height: '400px',
-        padding: '0 20px',
-        bottom: '50px'
-      }}
-      animation="slide"
-      swipe
-      indicators={false}
-    >
-      {works.map((work) =>
-        <Card
-          sx={{
-            width: 'auto',
-            height: '380px',
-            overflow: 'auto',
-          }}
-          key={work.id}>
+    <div style={{padding: '20px'}}>
+      {works.map((work) => (
+        <Accordion
+          key={work.id}
+          expanded={expanded === work.id}
+          onChange={handleChange(work.id)}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1bh-content"
+            id={work.id}
+          >
+            <Typography sx={{ width: "100%", flexShrink: 0 }}>
+              {work.overview}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails sx={{ textAlign: "left" }}>
+            <Typography>経験年数:{work.years}年</Typography>
+            <Typography>技術:{work.technologies.join(",")}</Typography>
+            <Typography>{work.detail}</Typography>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+    </div>
+  );
+};
 
-          <CardActionArea>
-            <Link href={work.link}>
-              <CardMedia
-                component="img"
-                image={work.image.url}
-                alt={work.title}
-                style={{
-                  width: 'auto',
-                  maxHeight: '200px',
-                  margin: '0 auto',
-                }}
-              />
-            </Link>
-            <CardContent>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                {work.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {work.overview}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      )}
-    </Carousel>
-  )
-}
-
-export default Works
+export default Works;

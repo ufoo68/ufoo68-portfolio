@@ -6,7 +6,6 @@ import Profile from '@/components/Profile'
 import Works from '@/components/Works'
 import { Work } from '@/libs/types'
 import Header from './Header'
-import Footer from './Footer'
 import Contact from './Contact'
 import Links from './Links'
 
@@ -61,7 +60,6 @@ const Main = ({ works }: Props) => {
           <Contact />
         </TabPanel>
       </Box>
-      <Footer />
     </div>
   );
 }

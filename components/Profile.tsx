@@ -51,7 +51,7 @@ const Profile = () => {
       <Box
         sx={{
           position: 'absolute',
-          bottom: '40px',
+          bottom: '0px',
           left: '50%',
           transform: 'translate(-50%, 0)'
         }}>
