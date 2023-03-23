@@ -43,12 +43,15 @@ const Works = ({ works }: Props) => {
               textAlign: "left",
             }}
           >
-            <Typography >経験年数:{work.years}年</Typography>
-            <div style={{
-              display: "flex",
-              gap: "5px",
-              textAlign: "left",
-            }}>
+            <Typography>経験年数:{work.years}年</Typography>
+            <div
+              style={{
+                display: "flex",
+                gap: "5px",
+                textAlign: "left",
+                flexWrap: "wrap",
+              }}
+            >
               {work.technologies.map((technology) => (
                 <Chip key={technology} label={technology} variant="outlined" />
               ))}
