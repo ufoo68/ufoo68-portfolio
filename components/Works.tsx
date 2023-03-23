@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
-
+import { Chip } from "@mui/material";
 
 type Props = {
   works: Work[];
@@ -19,7 +19,7 @@ const Works = ({ works }: Props) => {
       setExpanded(isExpanded ? panel : false);
     };
   return (
-    <div style={{padding: '20px'}}>
+    <div style={{ padding: "20px" }}>
       {works.map((work) => (
         <Accordion
           key={work.id}
@@ -35,9 +35,24 @@ const Works = ({ works }: Props) => {
               {work.overview}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails sx={{ textAlign: "left" }}>
-            <Typography>経験年数:{work.years}年</Typography>
-            <Typography>技術:{work.technologies.join(",")}</Typography>
+          <AccordionDetails
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              textAlign: "left",
+            }}
+          >
+            <Typography >経験年数:{work.years}年</Typography>
+            <div style={{
+              display: "flex",
+              gap: "5px",
+              textAlign: "left",
+            }}>
+              {work.technologies.map((technology) => (
+                <Chip key={technology} label={technology} variant="outlined" />
+              ))}
+            </div>
             <Typography>{work.detail}</Typography>
           </AccordionDetails>
         </Accordion>
