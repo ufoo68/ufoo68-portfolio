@@ -38,13 +38,13 @@ export async function Main() {
 							<div className="flex space-x-4">
 								<Link
 									className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
-									href="#"
+									href="#personal"
 								>
 									個人開発をみる
 								</Link>
 								<Link
 									className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
-									href="#"
+									href="#work"
 								>
 									仕事での開発をみる
 								</Link>
