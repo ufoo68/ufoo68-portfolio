@@ -1,4 +1,4 @@
-import { Main } from "@/components/components/main";
+import { Main } from "@/components/main";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

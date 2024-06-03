@@ -4,6 +4,11 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 /** Add fonts into your Next.js project:
 
 import { Cormorant_Garamond } from 'next/font/google'
@@ -24,11 +29,6 @@ To read more about using these font, please visit the Next.js documentation:
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
 import Link from "next/link";
-import { Button } from "@/components/components/ui/button";
-import { CardContent, Card } from "@/components/components/ui/card";
-import { Label } from "@/components/components/ui/label";
-import { Input } from "@/components/components/ui/input";
-import { Textarea } from "@/components/components/ui/textarea";
 
 export function Main() {
 	return (
