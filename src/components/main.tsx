@@ -4,104 +4,49 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-/** Add fonts into your Next.js project:
-
-import { Cormorant_Garamond } from 'next/font/google'
-import { Chivo } from 'next/font/google'
-
-cormorant_garamond({
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-chivo({
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-To read more about using these font, please visit the Next.js documentation:
-- App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
-- Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
-**/
 import Link from "next/link";
+import { ContactForm } from "@/components/contact-form";
+import { Product, micrecmsClient } from "@/components/utils";
+import { Menu } from "./menu";
 
-export function Main() {
+export async function Main() {
+	const {
+		contents: products,
+	}: {
+		contents: Product[];
+	} = (await micrecmsClient.get({ endpoint: "products" })) ?? { contents: [] };
+	const workProducts = products.filter((product) => product.type[0] === "work");
+	const personalProducts = products.filter(
+		(product) => product.type[0] === "personal",
+	);
 	return (
 		<div className="flex flex-col min-h-screen">
-			<header className="bg-gray-900 text-white py-4 px-6 md:px-12">
-				<div className="container mx-auto flex justify-between items-center">
-					<Link className="flex items-center gap-2 text-xl font-bold" href="#">
-						<img
-							alt="John Doe"
-							className="rounded-full"
-							height={40}
-							src="/placeholder.svg"
-							style={{
-								aspectRatio: "40/40",
-								objectFit: "cover",
-							}}
-							width={40}
-						/>
-						John Doe
-					</Link>
-					<nav className="hidden md:flex space-x-6">
-						<Link className="hover:text-gray-400" href="#">
-							Home
-						</Link>
-						<Link className="hover:text-gray-400" href="#">
-							Personal Projects
-						</Link>
-						<Link className="hover:text-gray-400" href="#">
-							Work Projects
-						</Link>
-						<Link className="hover:text-gray-400" href="#">
-							About
-						</Link>
-						<Link className="hover:text-gray-400" href="#">
-							Contact
-						</Link>
-					</nav>
-					<Button className="md:hidden" size="sm" variant="outline">
-						<MenuIcon className="w-5 h-5" />
-					</Button>
-				</div>
+			<header className="bg-gray-900 text-white py-4 px-6 md:px-12 sticky top-0">
+				<Menu />
 			</header>
 			<main className="flex-1">
-				<section className="bg-gray-100 py-12 md:py-20">
+				<section id="top" className="bg-gray-100 py-12 md:py-20">
 					<div className="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-8 items-center">
 						<div>
 							<h1 className="text-3xl md:text-4xl font-bold mb-4">
-								Hi, I'm John Doe
+								Yuta Matsunaga
 							</h1>
 							<p className="text-gray-600 mb-6">
-								I'm a software engineer with a passion for building beautiful
-								and functional web applications. I have experience in both
-								front-end and back-end development, and I'm always eager to
-								learn new technologies.
+								滋賀からリモートワークでWEB開発をやっております。
 							</p>
 							<div className="flex space-x-4">
 								<Link
 									className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
 									href="#"
 								>
-									View Personal Projects
+									個人開発をみる
 								</Link>
 								<Link
 									className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
 									href="#"
 								>
-									View Work Projects
-								</Link>
-								<Link
-									className="inline-flex items-center justify-center px-4 py-2 text-gray-900 rounded-md hover:bg-gray-200 transition-colors"
-									href="#"
-								>
-									Learn More
+									仕事での開発をみる
 								</Link>
 							</div>
 						</div>
@@ -110,7 +55,7 @@ export function Main() {
 								alt="John Doe"
 								className="rounded-full"
 								height={400}
-								src="/placeholder.svg"
+								src="/avatar.png"
 								style={{
 									aspectRatio: "400/400",
 									objectFit: "cover",
@@ -120,236 +65,163 @@ export function Main() {
 						</div>
 					</div>
 				</section>
-				<section className="py-12 md:py-20">
+				<section id="personal" className="py-12 md:py-20">
 					<div className="container mx-auto px-6 md:px-12">
-						<h2 className="text-2xl md:text-3xl font-bold mb-8">
-							Personal Projects
-						</h2>
+						<h2 className="text-2xl md:text-3xl font-bold mb-8">個人開発</h2>
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							<Card>
-								<img
-									alt="Project Thumbnail"
-									className="rounded-t-md"
-									height={225}
-									src="/placeholder.svg"
-									style={{
-										aspectRatio: "400/225",
-										objectFit: "cover",
-									}}
-									width={400}
-								/>
-								<CardContent className="p-4">
-									<h3 className="text-xl font-bold mb-2">
-										Task Management App
-									</h3>
-									<p className="text-gray-600 mb-4">
-										A web application that helps users manage their tasks and
-										projects.
-									</p>
-									<div className="flex items-center gap-2 mb-4">
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											React
-										</div>
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											Node.js
-										</div>
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											MongoDB
-										</div>
-									</div>
-									<Link
-										className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
-										href="#"
-									>
-										View Project
-									</Link>
-								</CardContent>
-							</Card>
-							<Card>
-								<img
-									alt="Project Thumbnail"
-									className="rounded-t-md"
-									height={225}
-									src="/placeholder.svg"
-									style={{
-										aspectRatio: "400/225",
-										objectFit: "cover",
-									}}
-									width={400}
-								/>
-								<CardContent className="p-4">
-									<h3 className="text-xl font-bold mb-2">
-										Fitness Tracker App
-									</h3>
-									<p className="text-gray-600 mb-4">
-										A mobile app that helps users track their fitness goals.
-									</p>
-									<div className="flex items-center gap-2 mb-4">
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											React Native
-										</div>
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											Firebase
-										</div>
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											Expo
-										</div>
-									</div>
-									<Link
-										className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
-										href="#"
-									>
-										View Project
-									</Link>
-								</CardContent>
-							</Card>
+							{
+								personalProducts.map((product) => (
+									<Card key={product.id}>
+										<img
+											alt={product.title}
+											className="rounded-t-md"
+											height={225}
+											src={product.image.url}
+											style={{
+												aspectRatio: "400/225",
+												objectFit: "cover",
+											}}
+											width={400}
+										/>
+										<CardContent className="p-4">
+											<h3 className="text-xl font-bold mb-2">
+												{product.title}
+											</h3>
+											<p className="text-gray-600 mb-4">
+												{product.detail}
+											</p>
+											<div className="flex items-center gap-2 mb-4">
+												{product.technologies.map((technology) => (
+													<div
+														key={technology}
+														className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700"
+													>
+														{technology}
+													</div>
+												))}
+											</div>
+											<Link
+												className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
+												href={product.url}
+											>
+												詳細
+											</Link>
+										</CardContent>
+									</Card>
+								))
+							}
 						</div>
 					</div>
 				</section>
-				<section className="py-12 md:py-20">
+				<section id="work" className="py-12 md:py-20">
 					<div className="container mx-auto px-6 md:px-12">
 						<h2 className="text-2xl md:text-3xl font-bold mb-8">
-							Work Projects
+							仕事での開発
 						</h2>
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							<Card>
-								<img
-									alt="Project Thumbnail"
-									className="rounded-t-md"
-									height={225}
-									src="/placeholder.svg"
-									style={{
-										aspectRatio: "400/225",
-										objectFit: "cover",
-									}}
-									width={400}
-								/>
-								<CardContent className="p-4">
-									<h3 className="text-xl font-bold mb-2">
-										Personal Finance App
-									</h3>
-									<p className="text-gray-600 mb-4">
-										A web application that helps users manage their personal
-										finances.
-									</p>
-									<div className="flex items-center gap-2 mb-4">
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											Vue.js
-										</div>
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											Django
-										</div>
-										<div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700">
-											PostgreSQL
-										</div>
-									</div>
-									<Link
-										className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
-										href="#"
-									>
-										View Project
-									</Link>
-								</CardContent>
-							</Card>
+							{
+								workProducts.map((product) => (
+									<Card key={product.id}>
+										<img
+											alt={product.title}
+											className="rounded-t-md"
+											height={225}
+											src={product.image.url}
+											style={{
+												aspectRatio: "400/225",
+												objectFit: "cover",
+											}}
+											width={400}
+										/>
+										<CardContent className="p-4">
+											<h3 className="text-xl font-bold mb-2">
+												{product.title}
+											</h3>
+											<p className="text-gray-600 mb-4">
+												{product.detail}
+											</p>
+											<div className="flex items-center gap-2 mb-4">
+												{product.technologies.map((technology) => (
+													<div
+														key={technology}
+														className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700"
+													>
+														{technology}
+													</div>
+												))}
+											</div>
+											<Link
+												className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
+												href={product.url}
+											>
+												詳細
+											</Link>
+										</CardContent>
+									</Card>
+								))
+							}
 						</div>
 					</div>
 				</section>
-				<section className="py-12 md:py-20">
+				<section id="skills" className="py-12 md:py-20">
 					<div className="container mx-auto px-6 md:px-12">
-						<h2 className="text-2xl md:text-3xl font-bold mb-8">About Me</h2>
+						<h2 className="text-2xl md:text-3xl font-bold mb-8">
+							スキルセット
+						</h2>
 						<div className="grid md:grid-cols-2 gap-8">
 							<div>
-								<h3 className="text-xl font-bold mb-4">Skills</h3>
 								<ul className="text-gray-600 space-y-2">
 									<li>
 										<span className="font-bold">Front-end:</span>
-										React, Vue.js, HTML, CSS, JavaScript
+										Next.js, React, HTML, CSS, JavaScript, TypeScript
 									</li>
 									<li>
 										<span className="font-bold">Back-end:</span>
-										Node.js, Express, Python, Django
+										Node.js, Nest.js, TypeScript
 									</li>
 									<li>
 										<span className="font-bold">Databases:</span>
-										MongoDB, PostgreSQL, MySQL
+										MySQL, DynamoDB
+									</li>
+									<li>
+										<span className="font-bold">Cloud:</span>
+										AWS
 									</li>
 									<li>
 										<span className="font-bold">Tools:</span>
-										Git, GitHub, Figma, Photoshop
+										Git, GitHub
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</section>
-				<section className="py-12 md:py-20">
+				<section id="contact" className="py-12 md:py-20">
 					<div className="container mx-auto px-6 md:px-12">
-						<h2 className="text-2xl md:text-3xl font-bold mb-8">
-							Connect with Me
-						</h2>
-						<div className="flex justify-center space-x-6">
-							<Link className="text-gray-900 hover:text-gray-600" href="#">
+						<h2 className="text-2xl md:text-3xl font-bold mb-8">問い合わせ</h2>
+						<h3 className="text-xl font-bold mb-4">SNSから</h3>
+						<div className="flex justify-center space-x-6 mb-4">
+							<Link className="text-gray-900 hover:text-gray-600" href="https://github.com/ufoo68">
 								<div className="flex items-center gap-2">
 									<GithubIcon className="w-6 h-6" />
 									<span>Github</span>
 								</div>
 							</Link>
-							<Link className="text-gray-900 hover:text-gray-600" href="#">
-								<div className="flex items-center gap-2">
-									<LinkedinIcon className="w-6 h-6" />
-									<span>LinkedIn</span>
-								</div>
-							</Link>
-							<Link className="text-gray-900 hover:text-gray-600" href="#">
+							<Link className="text-gray-900 hover:text-gray-600" href="https://x.com/ufoo_yuta">
 								<div className="flex items-center gap-2">
 									<TwitterIcon className="w-6 h-6" />
 									<span>Twitter</span>
 								</div>
 							</Link>
 						</div>
-					</div>
-				</section>
-				<section className="py-12 md:py-20">
-					<div className="container mx-auto px-6 md:px-12">
-						<h2 className="text-2xl md:text-3xl font-bold mb-8">Contact Me</h2>
-						<form className="max-w-md mx-auto space-y-4">
-							<div>
-								<Label htmlFor="name">Name</Label>
-								<Input id="name" placeholder="Enter your name" type="text" />
-							</div>
-							<div>
-								<Label htmlFor="email">Email</Label>
-								<Input id="email" placeholder="Enter your email" type="email" />
-							</div>
-							<div>
-								<Label htmlFor="message">Message</Label>
-								<Textarea
-									className="min-h-[120px]"
-									id="message"
-									placeholder="Enter your message"
-								/>
-							</div>
-							<Button className="w-full" type="submit">
-								Send Message
-							</Button>
-						</form>
+						<h3 className="text-xl font-bold mb-4">フォームから</h3>
+						<ContactForm />
 					</div>
 				</section>
 			</main>
 			<footer className="bg-gray-900 text-white py-6 px-6 md:px-12">
 				<div className="container mx-auto flex justify-between items-center">
-					<p className="text-sm">© 2024 John Doe. All rights reserved.</p>
-					<div className="flex space-x-4">
-						<Link className="hover:text-gray-400" href="#">
-							<GithubIcon className="w-5 h-5" />
-						</Link>
-						<Link className="hover:text-gray-400" href="#">
-							<LinkedinIcon className="w-5 h-5" />
-						</Link>
-						<Link className="hover:text-gray-400" href="#">
-							<TwitterIcon className="w-5 h-5" />
-						</Link>
-					</div>
+					<p className="text-sm">© 2024 Yuta Matsunaga. All rights reserved.</p>
 				</div>
 			</footer>
 		</div>
@@ -372,48 +244,6 @@ function GithubIcon(props) {
 		>
 			<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
 			<path d="M9 18c-4.51 2-5-2-7-2" />
-		</svg>
-	);
-}
-
-function LinkedinIcon(props) {
-	return (
-		<svg
-			{...props}
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		>
-			<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-			<rect width="4" height="12" x="2" y="9" />
-			<circle cx="4" cy="4" r="2" />
-		</svg>
-	);
-}
-
-function MenuIcon(props) {
-	return (
-		<svg
-			{...props}
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		>
-			<line x1="4" x2="20" y1="12" y2="12" />
-			<line x1="4" x2="20" y1="6" y2="6" />
-			<line x1="4" x2="20" y1="18" y2="18" />
 		</svg>
 	);
 }

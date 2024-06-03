@@ -24,12 +24,18 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export type Work = {
+export type Product = {
 	id: string;
-	overview: string;
+	title: string;
 	detail: string;
 	technologies: string[];
-	years: number;
+	url: string;
+	image: {
+		url: string;
+		width: number;
+		height: number;
+	};
+	type: ['personal' | 'work'];
 };
 
 export type EmailMessage = {
