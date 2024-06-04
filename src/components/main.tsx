@@ -30,7 +30,7 @@ export async function Main() {
 					<div className="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-8 items-center">
 						<div>
 							<h1 className="text-3xl md:text-4xl font-bold mb-4">
-								Yuta Matsunaga
+								ufoo68 Portfolio
 							</h1>
 							<p className="text-gray-600 mb-6">
 								滋賀からリモートワークでWEB開発をやっております。

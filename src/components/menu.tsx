@@ -23,7 +23,7 @@ export function Menu() {
 					}}
 					width={40}
 				/>
-				Yuta Matsunaga
+				ufoo68
 			</Link>
 			<nav className="hidden md:flex space-x-6">
 				<Link className="hover:text-gray-400" href="#top">
