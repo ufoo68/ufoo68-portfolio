@@ -90,7 +90,7 @@ export async function Main() {
 											<p className="text-gray-600 mb-4">
 												{product.detail}
 											</p>
-											<div className="flex items-center gap-2 mb-4">
+											<div className="flex items-center gap-2 mb-4 flex-wrap">
 												{product.technologies.map((technology) => (
 													<div
 														key={technology}
@@ -140,7 +140,7 @@ export async function Main() {
 											<p className="text-gray-600 mb-4">
 												{product.detail}
 											</p>
-											<div className="flex items-center gap-2 mb-4">
+											<div className="flex items-center gap-2 mb-4 flex-wrap">
 												{product.technologies.map((technology) => (
 													<div
 														key={technology}
