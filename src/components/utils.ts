@@ -38,6 +38,13 @@ export type Product = {
 	type: ['personal' | 'work'];
 };
 
+export type Skill = {
+	id: string;
+	title: string;
+	years: number;
+	type: ['language' | 'framework' | 'cloud' | 'database'];
+};
+
 export type EmailMessage = {
 	from_name: string;
 	reply_to: string;
