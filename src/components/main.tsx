@@ -48,13 +48,13 @@ export async function Main() {
 									className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
 									href="#personal"
 								>
-									個人開発をみる
+									個人開発
 								</Link>
 								<Link
 									className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
 									href="#work"
 								>
-									仕事での開発をみる
+									仕事での開発
 								</Link>
 							</div>
 						</div>
