@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "./ui/button";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 export function Menu() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);

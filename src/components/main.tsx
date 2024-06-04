@@ -4,11 +4,11 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
-import { Product, micrecmsClient } from "@/components/utils";
 import { Menu } from "@/components/menu";
+import { Card, CardContent } from "@/components/ui/card";
+import { Product, micrecmsClient } from "@/components/utils";
+import Link from "next/link";
 
 export async function Main() {
 	const {
