@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { Product, micrecmsClient } from "@/components/utils";
-import { Menu } from "./menu";
+import { Menu } from "@/components/menu";
 
 export async function Main() {
 	const {
