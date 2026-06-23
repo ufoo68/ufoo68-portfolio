@@ -4,11 +4,11 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
+import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { Menu } from "@/components/menu";
-import { Card, CardContent } from "@/components/ui/card";
-import { Product, Skill, micrecmsClient } from "@/components/utils";
-import Link from "next/link";
+import { ProjectCard, SkillBadge, SkillGroup } from "@/components/ufoo-ui";
+import { micrecmsClient, type Product, type Skill } from "@/components/utils";
 
 export async function Main() {
 	if (!micrecmsClient) {
@@ -43,224 +43,232 @@ function PortfolioContent({
 	const clouds = skills.filter((skill) => skill.type[0] === "cloud");
 	const databases = skills.filter((skill) => skill.type[0] === "database");
 	return (
-		<div className="flex flex-col min-h-screen">
-			<header className="bg-gray-900 text-white py-4 px-6 md:px-12 sticky top-0">
-				<Menu />
-			</header>
+		<div className="flex min-h-screen flex-col bg-ufoo-workspace text-ufoo-ink">
+			<Menu />
 			<main className="flex-1">
-				<section id="top" className="bg-gray-100 py-12 md:py-20">
-					<div className="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-8 items-center">
-						<div>
-							<h1 className="text-3xl md:text-4xl font-bold mb-4">
+				<section
+					id="top"
+					className="overflow-hidden border-b border-ufoo-panel-border"
+				>
+					<div className="mx-auto grid min-h-[520px] w-full max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:grid-cols-[1.1fr_0.9fr] md:py-20">
+						<div className="max-w-2xl">
+							<p className="mb-4 text-xs font-black uppercase tracking-[0.24em] text-ufoo-neon">
+								Remote Web Developer
+							</p>
+							<h1 className="text-5xl font-black leading-tight tracking-tight text-ufoo-ink md:text-6xl">
 								ufoo68 Portfolio
 							</h1>
-							<p className="text-gray-600 mb-6">
+							<p className="mt-5 max-w-xl text-lg leading-7 text-ufoo-muted">
 								滋賀からリモートワークでWEB開発をやっております。
 							</p>
-							<div className="flex space-x-4">
+							<div className="mt-8 flex flex-wrap gap-3">
 								<Link
-									className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
+									className="inline-flex h-12 items-center justify-center rounded-md bg-ufoo-neon px-6 text-base font-bold text-ufoo-dark transition hover:scale-105 hover:shadow-neon"
 									href="#personal"
 								>
 									個人開発
 								</Link>
 								<Link
-									className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
+									className="inline-flex h-12 items-center justify-center rounded-md border-2 border-ufoo-neon px-6 text-base font-bold text-ufoo-neon transition hover:bg-ufoo-neon hover:text-ufoo-dark hover:shadow-neon"
 									href="#work"
 								>
 									仕事での開発
 								</Link>
 							</div>
 						</div>
-						<div className="hidden md:block">
+						<div className="relative mx-auto hidden size-[360px] place-items-center md:grid">
+							<div className="absolute inset-0 rounded-full border border-ufoo-neon/60 bg-ufoo-neon/10 shadow-neon" />
+							<div className="absolute inset-8 rounded-full border border-ufoo-pink bg-ufoo-panel" />
 							<img
-								alt="John Doe"
-								className="rounded-full"
-								height={400}
+								alt="Yuta Matsunaga"
+								className="relative size-64 rounded-full border-2 border-ufoo-neon object-cover shadow-[0_18px_60px_rgba(0,0,0,0.35)]"
+								height={256}
 								src="/avatar.png"
-								style={{
-									aspectRatio: "400/400",
-									objectFit: "cover",
-								}}
-								width={400}
+								width={256}
 							/>
 						</div>
 					</div>
 				</section>
-				<section id="personal" className="py-12 md:py-20">
-					<div className="container mx-auto px-6 md:px-12">
-						<h2 className="text-2xl md:text-3xl font-bold mb-8">個人開発</h2>
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							{personalProducts.map((product) => (
-								<Card key={product.id}>
+				<PortfolioShowcase
+					id="personal"
+					title="個人開発"
+					eyebrow="Personal Projects"
+					description="自分で課題を見つけ、企画から実装まで進めたプロダクトです。"
+				>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{personalProducts.map((product) => (
+							<ProjectCard
+								key={product.id}
+								title={product.title}
+								description={product.detail}
+								eyebrow="personal"
+								media={
 									<img
 										alt={product.title}
-										className="rounded-t-md"
+										className="h-full w-full object-cover"
 										height={225}
 										src={product.image.url}
-										style={{
-											aspectRatio: "400/225",
-											objectFit: "cover",
-										}}
 										width={400}
 									/>
-									<CardContent className="p-4">
-										<h3 className="text-xl font-bold mb-2">{product.title}</h3>
-										<p className="text-gray-600 mb-4">{product.detail}</p>
-										<div className="flex items-center gap-2 mb-4 flex-wrap">
-											{product.technologies.map((technology) => (
-												<div
-													key={technology}
-													className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700"
-												>
-													{technology}
-												</div>
-											))}
-										</div>
-										<Link
-											className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
-											href={product.url}
-										>
-											詳細
-										</Link>
-									</CardContent>
-								</Card>
-							))}
-						</div>
+								}
+								technologies={product.technologies}
+								action={
+									<Link
+										className="inline-flex h-10 items-center justify-center rounded-md bg-ufoo-neon px-4 text-sm font-bold text-ufoo-dark transition hover:shadow-neon"
+										href={product.url}
+									>
+										詳細
+									</Link>
+								}
+							/>
+						))}
 					</div>
-				</section>
-				<section id="work" className="py-12 md:py-20">
-					<div className="container mx-auto px-6 md:px-12">
-						<h2 className="text-2xl md:text-3xl font-bold mb-8">
-							仕事での開発
-						</h2>
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							{workProducts.map((product) => (
-								<Card key={product.id}>
+				</PortfolioShowcase>
+				<PortfolioShowcase
+					id="work"
+					title="仕事での開発"
+					eyebrow="Client Work"
+					description="業務で携わった開発経験を、担当領域と使った技術が見える形でまとめています。"
+					muted
+				>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{workProducts.map((product) => (
+							<ProjectCard
+								key={product.id}
+								title={product.title}
+								description={product.detail}
+								eyebrow="work"
+								media={
 									<img
 										alt={product.title}
-										className="rounded-t-md"
+										className="h-full w-full object-cover"
 										height={225}
 										src={product.image.url}
-										style={{
-											aspectRatio: "400/225",
-											objectFit: "cover",
-										}}
 										width={400}
 									/>
-									<CardContent className="p-4">
-										<h3 className="text-xl font-bold mb-2">{product.title}</h3>
-										<p className="text-gray-600 mb-4">{product.detail}</p>
-										<div className="flex items-center gap-2 mb-4 flex-wrap">
-											{product.technologies.map((technology) => (
-												<div
-													key={technology}
-													className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700"
-												>
-													{technology}
-												</div>
-											))}
-										</div>
-										<Link
-											className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
-											href={product.url}
-										>
-											詳細
-										</Link>
-									</CardContent>
-								</Card>
-							))}
-						</div>
+								}
+								technologies={product.technologies}
+								action={
+									<Link
+										className="inline-flex h-10 items-center justify-center rounded-md bg-ufoo-neon px-4 text-sm font-bold text-ufoo-dark transition hover:shadow-neon"
+										href={product.url}
+									>
+										詳細
+									</Link>
+								}
+							/>
+						))}
 					</div>
-				</section>
-				<section id="skills" className="py-12 md:py-20">
-					<div className="container mx-auto px-6 md:px-12">
-						<h2 className="text-2xl md:text-3xl font-bold mb-8">
-							スキルセット
-						</h2>
-						<div className="grid md:grid-cols-2 gap-8">
-							<h3 className="text-xl font-bold mb-4">言語</h3>
-							<div className="flex flex-wrap gap-4">
-								{languages.map((skill) => (
-									<div
-										key={skill.id}
-										className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700 h-7"
-									>
-										{skill.title}: {skill.years}年
-									</div>
-								))}
-							</div>
-							<h3 className="text-xl font-bold mb-4">フレームワーク</h3>
-							<div className="flex flex-wrap gap-4">
-								{frameworks.map((skill) => (
-									<div
-										key={skill.id}
-										className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700 h-7"
-									>
-										{skill.title}: {skill.years}年
-									</div>
-								))}
-							</div>
-							<h3 className="text-xl font-bold mb-4">クラウド</h3>
-							<div className="flex flex-wrap gap-4">
-								{clouds.map((skill) => (
-									<div
-										key={skill.id}
-										className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700 h-7"
-									>
-										{skill.title}: {skill.years}年
-									</div>
-								))}
-							</div>
-							<h3 className="text-xl font-bold mb-4">データベース</h3>
-							<div className="flex flex-wrap gap-4">
-								{databases.map((skill) => (
-									<div
-										key={skill.id}
-										className="bg-gray-200 px-2 py-1 rounded-md text-sm font-medium text-gray-700 h-7"
-									>
-										{skill.title}: {skill.years}年
-									</div>
-								))}
-							</div>
-						</div>
+				</PortfolioShowcase>
+				<PortfolioShowcase
+					id="skills"
+					title="スキルセット"
+					eyebrow="Skill Stack"
+					description="開発で使ってきた技術をカテゴリごとに整理しています。"
+				>
+					<div className="grid md:grid-cols-2 gap-8">
+						<SkillList title="言語" skills={languages} />
+						<SkillList title="フレームワーク" skills={frameworks} />
+						<SkillList title="クラウド" skills={clouds} />
+						<SkillList title="データベース" skills={databases} />
 					</div>
-				</section>
-				<section id="contact" className="py-12 md:py-20">
-					<div className="container mx-auto px-6 md:px-12">
-						<h2 className="text-2xl md:text-3xl font-bold mb-8">問い合わせ</h2>
-						<h3 className="text-xl font-bold mb-4">SNSから</h3>
-						<div className="flex justify-center space-x-6 mb-4">
-							<Link
-								className="text-gray-900 hover:text-gray-600"
-								href="https://github.com/ufoo68"
-							>
-								<div className="flex items-center gap-2">
+				</PortfolioShowcase>
+				<PortfolioShowcase
+					id="contact"
+					title="問い合わせ"
+					eyebrow="Contact"
+					description="SNS またはフォームからご連絡ください。"
+					muted
+				>
+					<div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
+						<div className="rounded-lg border-l-4 border-ufoo-neon bg-ufoo-gray p-6 shadow-neon">
+							<h3 className="text-xl font-black text-ufoo-neon">SNS</h3>
+							<div className="mt-5 grid gap-3">
+								<Link
+									className="inline-flex items-center gap-3 rounded-md border border-ufoo-panel-border bg-white/8 px-4 py-3 font-bold text-ufoo-ink transition hover:border-ufoo-neon hover:text-ufoo-neon"
+									href="https://github.com/ufoo68"
+								>
 									<GithubIcon className="w-6 h-6" />
 									<span>Github</span>
-								</div>
-							</Link>
-							<Link
-								className="text-gray-900 hover:text-gray-600"
-								href="https://x.com/ufoo_yuta"
-							>
-								<div className="flex items-center gap-2">
+								</Link>
+								<Link
+									className="inline-flex items-center gap-3 rounded-md border border-ufoo-panel-border bg-white/8 px-4 py-3 font-bold text-ufoo-ink transition hover:border-ufoo-neon hover:text-ufoo-neon"
+									href="https://x.com/ufoo_yuta"
+								>
 									<TwitterIcon className="w-6 h-6" />
 									<span>Twitter</span>
-								</div>
-							</Link>
+								</Link>
+							</div>
 						</div>
-						<h3 className="text-xl font-bold mb-4">フォームから</h3>
-						<ContactForm />
+						<div className="rounded-lg border border-ufoo-panel-border bg-ufoo-panel p-6">
+							<ContactForm />
+						</div>
 					</div>
-				</section>
+				</PortfolioShowcase>
 			</main>
-			<footer className="bg-gray-900 text-white py-6 px-6 md:px-12">
-				<div className="container mx-auto flex justify-between items-center">
+			<footer className="border-t border-ufoo-panel-border bg-ufoo-dark px-5 py-6 text-ufoo-muted md:px-12">
+				<div className="mx-auto flex max-w-6xl justify-between">
 					<p className="text-sm">© 2024 ufoo68. All rights reserved.</p>
 				</div>
 			</footer>
 		</div>
+	);
+}
+
+function PortfolioShowcase({
+	id,
+	title,
+	eyebrow,
+	description,
+	muted = false,
+	children,
+}: {
+	id: string;
+	title: string;
+	eyebrow: string;
+	description: string;
+	muted?: boolean;
+	children: React.ReactNode;
+}) {
+	return (
+		<section
+			id={id}
+			className={`border-b border-ufoo-panel-border py-14 sm:py-20 ${
+				muted ? "bg-ufoo-dark" : "bg-ufoo-workspace"
+			}`}
+		>
+			<div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
+				<div className="mb-8 max-w-2xl sm:mb-10">
+					<p className="mb-2 text-left text-xs font-black uppercase tracking-[0.22em] text-ufoo-neon">
+						{eyebrow}
+					</p>
+					<h2 className="text-left text-3xl font-black tracking-tight text-ufoo-ink sm:text-4xl">
+						{title}
+					</h2>
+					<p className="mt-3 text-left leading-7 text-ufoo-muted">
+						{description}
+					</p>
+				</div>
+				{children}
+			</div>
+		</section>
+	);
+}
+
+function SkillList({ title, skills }: { title: string; skills: Skill[] }) {
+	return (
+		<SkillGroup title={title}>
+			<div className="flex flex-wrap gap-3">
+				{skills.map((skill) => (
+					<SkillBadge
+						key={skill.id}
+						name={skill.title}
+						meta={`${skill.years}年`}
+						tone="dark"
+					/>
+				))}
+			</div>
+		</SkillGroup>
 	);
 }
 

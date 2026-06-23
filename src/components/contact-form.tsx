@@ -1,11 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { sendEmail } from "@/components/utils";
 import { Label } from "@radix-ui/react-label";
 import { useState } from "react";
+import { Button, Input } from "@/components/ufoo-ui";
+import { Textarea } from "@/components/ui/textarea";
+import { sendEmail } from "@/components/utils";
 
 export function ContactForm() {
 	const [loading, setLoading] = useState(false);
@@ -61,7 +60,7 @@ export function ContactForm() {
 					placeholder="Enter your message"
 				/>
 			</div>
-			<Button className="w-full" type="submit" disabled={loading}>
+			<Button className="w-full" type="submit" isDisabled={loading}>
 				{loading ? "送信中..." : "送信する"}
 			</Button>
 		</form>
