@@ -7,23 +7,37 @@
 import { ContactForm } from "@/components/contact-form";
 import { Menu } from "@/components/menu";
 import { Card, CardContent } from "@/components/ui/card";
-import { Product, micrecmsClient } from "@/components/utils";
+import { Product, Skill, micrecmsClient } from "@/components/utils";
 import Link from "next/link";
 
 export async function Main() {
+	if (!micrecmsClient) {
+		return <PortfolioContent products={[]} skills={[]} />;
+	}
+
 	const {
 		contents: products,
 	}: {
 		contents: Product[];
 	} = (await micrecmsClient.get({ endpoint: "products" })) ?? { contents: [] };
+	const { contents: skills } = (await micrecmsClient.get({
+		endpoint: "skills",
+	})) ?? { contents: [] };
+
+	return <PortfolioContent products={products} skills={skills} />;
+}
+
+function PortfolioContent({
+	products,
+	skills,
+}: {
+	products: Product[];
+	skills: Skill[];
+}) {
 	const workProducts = products.filter((product) => product.type[0] === "work");
 	const personalProducts = products.filter(
 		(product) => product.type[0] === "personal",
 	);
-
-	const { contents: skills } = (await micrecmsClient.get({
-		endpoint: "skills",
-	})) ?? { contents: [] };
 	const languages = skills.filter((skill) => skill.type[0] === "language");
 	const frameworks = skills.filter((skill) => skill.type[0] === "framework");
 	const clouds = skills.filter((skill) => skill.type[0] === "cloud");

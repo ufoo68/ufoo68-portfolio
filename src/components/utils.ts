@@ -13,10 +13,12 @@ export const sendEmail = (
 		process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
 	);
 
-export const micrecmsClient = createClient({
-	serviceDomain: "ufoo68-portfolio",
-	apiKey: process.env.NEXT_PUBLIC_MICROCMS_API_KEY,
-});
+export const micrecmsClient = process.env.NEXT_PUBLIC_MICROCMS_API_KEY
+	? createClient({
+			serviceDomain: "ufoo68-portfolio",
+			apiKey: process.env.NEXT_PUBLIC_MICROCMS_API_KEY,
+		})
+	: null;
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
