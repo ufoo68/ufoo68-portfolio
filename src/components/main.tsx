@@ -256,6 +256,8 @@ function PortfolioShowcase({
 }
 
 function SkillList({ title, skills }: { title: string; skills: Skill[] }) {
+	const currentYear = new Date().getFullYear();
+
 	return (
 		<SkillGroup title={title}>
 			<div className="flex flex-wrap gap-3">
@@ -263,7 +265,7 @@ function SkillList({ title, skills }: { title: string; skills: Skill[] }) {
 					<SkillBadge
 						key={skill.id}
 						name={skill.title}
-						meta={`${skill.years}年`}
+						meta={`${currentYear - skill.years}年`}
 						tone="dark"
 					/>
 				))}
