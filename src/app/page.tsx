@@ -5,6 +5,8 @@ const publishUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 const imageUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og`;
 const title = "ufoo68 Portfolio";
 
+export const dynamic = "force-dynamic";
+
 export const viewport: Viewport = {
 	width: "device-width",
 	initialScale: 1.0,

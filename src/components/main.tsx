@@ -18,9 +18,14 @@ export async function Main() {
 		contents: products,
 	}: {
 		contents: Product[];
-	} = (await micrecmsClient.get({ endpoint: "products" })) ?? { contents: [] };
+	} =
+		(await micrecmsClient.get({
+			endpoint: "products",
+			customRequestInit: { cache: "no-store" },
+		})) ?? { contents: [] };
 	const { contents: skills } = (await micrecmsClient.get({
 		endpoint: "skills",
+		customRequestInit: { cache: "no-store" },
 	})) ?? { contents: [] };
 
 	return <PortfolioContent products={products} skills={skills} />;
@@ -33,6 +38,7 @@ function PortfolioContent({
 	products: Product[];
 	skills: Skill[];
 }) {
+	const currentYear = new Date().getFullYear();
 	const workProducts = products.filter((product) => product.type[0] === "work");
 	const personalProducts = products.filter(
 		(product) => product.type[0] === "personal",
@@ -204,7 +210,9 @@ function PortfolioContent({
 			</main>
 			<footer className="border-t border-ufoo-panel-border bg-ufoo-dark px-5 py-6 text-ufoo-muted md:px-12">
 				<div className="mx-auto flex max-w-6xl justify-between">
-					<p className="text-sm">© 2024 ufoo68. All rights reserved.</p>
+					<p className="text-sm">
+						© {currentYear} ufoo68. All rights reserved.
+					</p>
 				</div>
 			</footer>
 		</div>
