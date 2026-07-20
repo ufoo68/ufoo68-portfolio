@@ -5,7 +5,6 @@
  */
 
 import Link from "next/link";
-import { ContactForm } from "@/components/contact-form";
 import { Menu } from "@/components/menu";
 import { ProjectCard, SkillBadge, SkillGroup } from "@/components/ufoo-ui";
 import { micrecmsClient, type Product, type Skill } from "@/components/utils";
@@ -177,10 +176,10 @@ function PortfolioContent({
 					id="contact"
 					title="問い合わせ"
 					eyebrow="Contact"
-					description="SNS またはフォームからご連絡ください。"
+					description="SNS からご連絡ください。"
 					muted
 				>
-					<div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
+					<div className="max-w-md">
 						<div className="rounded-lg border-l-4 border-ufoo-neon bg-ufoo-gray p-6 shadow-neon">
 							<h3 className="text-xl font-black text-ufoo-neon">SNS</h3>
 							<div className="mt-5 grid gap-3">
@@ -199,9 +198,6 @@ function PortfolioContent({
 									<span>Twitter</span>
 								</Link>
 							</div>
-						</div>
-						<div className="rounded-lg border border-ufoo-panel-border bg-ufoo-panel p-6">
-							<ContactForm />
 						</div>
 					</div>
 				</PortfolioShowcase>

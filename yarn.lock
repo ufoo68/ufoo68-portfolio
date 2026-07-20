@@ -103,29 +103,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emailjs/browser@npm:^4.4.1":
-  version: 4.4.1
-  resolution: "@emailjs/browser@npm:4.4.1"
-  checksum: 10c0/91c3d1702818dc2db61f382f5295e469ce2e6acb4d683d65239e0a12dea8b635cd8cea60ef9a83f2aa8fce857b1f8f8663e02dcd7f529cbf902f1f0e6d0d1b44
-  languageName: node
-  linkType: hard
-
 "@emnapi/core@npm:^1.10.0":
-  version: 1.11.1
-  resolution: "@emnapi/core@npm:1.11.1"
+  version: 1.11.2
+  resolution: "@emnapi/core@npm:1.11.2"
   dependencies:
     "@emnapi/wasi-threads": "npm:1.2.2"
     tslib: "npm:^2.4.0"
-  checksum: 10c0/2c6defdac2d1d26090384655d7d6c9614fa553853b1760597686749e9375dc2aa0dae80a2615b81c254600f5d531d07d8466cde0d331a8caae64b93f3ca5937e
+  checksum: 10c0/424ca1607f498e524eb58db1095e6cc2082986edfd84a74b116d4e2c6e43b5e9d557ea7f0d7b9adf7f6d5023e25ac2ed6bd08caf0043d3d8602598d79579c2cd
   languageName: node
   linkType: hard
 
 "@emnapi/runtime@npm:^1.10.0, @emnapi/runtime@npm:^1.7.0":
-  version: 1.11.1
-  resolution: "@emnapi/runtime@npm:1.11.1"
+  version: 1.11.2
+  resolution: "@emnapi/runtime@npm:1.11.2"
   dependencies:
     tslib: "npm:^2.4.0"
-  checksum: 10c0/04332fb62076afc440aa23316c04bec42f584ca8b074e5507d08e2b33a47cbe0493b1aadb8f3c1057b64ae1e17f5bde1a7bc37f7facc9d0bc25c18197cbd366f
+  checksum: 10c0/d8d500059fe9c0864571c79ce29439c1b6fb44d7ec4ac865a2aaaa7469194e5d91ebdc820cabd37c3d373478b725a8b60771733e4743cfef41fc86d9a1f2eab0
   languageName: node
   linkType: hard
 
@@ -410,14 +403,14 @@ __metadata:
   linkType: hard
 
 "@napi-rs/wasm-runtime@npm:^1.1.4":
-  version: 1.1.5
-  resolution: "@napi-rs/wasm-runtime@npm:1.1.5"
+  version: 1.1.6
+  resolution: "@napi-rs/wasm-runtime@npm:1.1.6"
   dependencies:
-    "@tybys/wasm-util": "npm:^0.10.2"
+    "@tybys/wasm-util": "npm:^0.10.3"
   peerDependencies:
     "@emnapi/core": ^1.7.1
     "@emnapi/runtime": ^1.7.1
-  checksum: 10c0/727f2b6ae0e68bbe5d39aeb68aa6f183314e9f03dc50bb55a962849535b2db53ecc3fbf1554d8656a54488a608df5a2634670595cf5874dc4af2ee59f817c65d
+  checksum: 10c0/344518bf3ef65051dda4c00969f293aa4a21ab7dc7822b3f48519b17cd5eaa3f0bc34898d115d50ba59b1817a0cb905d46f7a7223c8249239cd14c28db388e10
   languageName: node
   linkType: hard
 
@@ -506,45 +499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-label@npm:^2.1.8":
-  version: 2.1.8
-  resolution: "@radix-ui/react-label@npm:2.1.8"
-  dependencies:
-    "@radix-ui/react-primitive": "npm:2.1.4"
-  peerDependencies:
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-dom":
-      optional: true
-  checksum: 10c0/8b130380bd54bafb0dc652270c8cf035ceeb78faab82f78c0a76fc33cc0718e8455ff880e0db1b6c10f203ff342bf1f941544eb258c1fd85ae5b49b53cdf1a3d
-  languageName: node
-  linkType: hard
-
-"@radix-ui/react-primitive@npm:2.1.4":
-  version: 2.1.4
-  resolution: "@radix-ui/react-primitive@npm:2.1.4"
-  dependencies:
-    "@radix-ui/react-slot": "npm:1.2.4"
-  peerDependencies:
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-dom":
-      optional: true
-  checksum: 10c0/90d687b222a25975371ed1f9f08648d75237214b8dec4cbaf09ec9ac951339b17421278f1aff2fb7c5672ba8bd03774a94904efdba73805dd5cc947ce5be8c4a
-  languageName: node
-  linkType: hard
-
-"@radix-ui/react-slot@npm:1.2.4, @radix-ui/react-slot@npm:^1.2.4":
+"@radix-ui/react-slot@npm:^1.2.4":
   version: 1.2.4
   resolution: "@radix-ui/react-slot@npm:1.2.4"
   dependencies:
@@ -751,7 +706,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tybys/wasm-util@npm:^0.10.1, @tybys/wasm-util@npm:^0.10.2":
+"@tybys/wasm-util@npm:^0.10.1, @tybys/wasm-util@npm:^0.10.3":
   version: 0.10.3
   resolution: "@tybys/wasm-util@npm:0.10.3"
   dependencies:
@@ -1197,11 +1152,11 @@ __metadata:
   linkType: hard
 
 "nanoid@npm:^3.3.6":
-  version: 3.3.15
-  resolution: "nanoid@npm:3.3.15"
+  version: 3.3.16
+  resolution: "nanoid@npm:3.3.16"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: 10c0/e0b12e3a1d361f74150fa4b25631d0ae29f7162dab01a12f0f1be1f53b7a2a219f9b729504e474d4821207d0fe349bd3c97569ab5cf7ec2fff6aa94711956c93
+  checksum: 10c0/bbf2dcffe22d2b62d16de2711752070b539c0f644c7916f823ad6521986b2078cbe524f2d6240f58c46e9141ea0c7b87a029e100c0f7f175228cacaf30e41bba
   languageName: node
   linkType: hard
 
@@ -1578,9 +1533,7 @@ __metadata:
   resolution: "ufoo68-portfolio@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^2.4.15"
-    "@emailjs/browser": "npm:^4.4.1"
     "@radix-ui/react-icons": "npm:^1.3.2"
-    "@radix-ui/react-label": "npm:^2.1.8"
     "@radix-ui/react-slot": "npm:^1.2.4"
     "@tailwindcss/postcss": "npm:^4.3.0"
     "@types/node": "npm:^25.8.0"
