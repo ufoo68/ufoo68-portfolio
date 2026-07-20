@@ -1,5 +1,6 @@
 import "ufoo-ui/style.css";
 import "@/globals.css";
+import { ServiceWorkerRegistration } from "@/components/service-worker-registration";
 
 export default function RootLayout({
 	children,
@@ -7,8 +8,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body>{children}</body>
+		<html lang="ja">
+			<body>
+				{children}
+				<ServiceWorkerRegistration />
+			</body>
 		</html>
 	);
 }

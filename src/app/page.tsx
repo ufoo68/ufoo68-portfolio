@@ -15,7 +15,17 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
 	title: title,
 	description: title,
-	icons: "/favicon.ico",
+	manifest: "/manifest.webmanifest",
+	applicationName: title,
+	appleWebApp: {
+		capable: true,
+		statusBarStyle: "default",
+		title,
+	},
+	icons: {
+		icon: "/favicon.ico",
+		apple: "/icons/apple-touch-icon.png",
+	},
 	keywords: ["ufoo68", "Portfolio", "ポートフォリオ"],
 	twitter: {
 		card: "summary_large_image",
