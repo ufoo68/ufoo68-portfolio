@@ -6,6 +6,7 @@
 
 import Link from "next/link";
 import { Menu } from "@/components/menu";
+import { ProjectActions } from "@/components/project-actions";
 import { ProjectCard, SkillBadge, SkillGroup } from "@/components/ufoo-ui";
 import { micrecmsClient, type Product, type Skill } from "@/components/utils";
 
@@ -118,12 +119,7 @@ function PortfolioContent({
 								}
 								technologies={product.technologies}
 								action={
-									<Link
-										className="inline-flex h-10 items-center justify-center rounded-md bg-ufoo-neon px-4 text-sm font-bold text-ufoo-dark transition hover:shadow-neon"
-										href={product.url}
-									>
-										詳細
-									</Link>
+									<ProjectActions title={product.title} url={product.url} />
 								}
 							/>
 						))}
@@ -154,12 +150,7 @@ function PortfolioContent({
 								}
 								technologies={product.technologies}
 								action={
-									<Link
-										className="inline-flex h-10 items-center justify-center rounded-md bg-ufoo-neon px-4 text-sm font-bold text-ufoo-dark transition hover:shadow-neon"
-										href={product.url}
-									>
-										詳細
-									</Link>
+									<ProjectActions title={product.title} url={product.url} />
 								}
 							/>
 						))}
